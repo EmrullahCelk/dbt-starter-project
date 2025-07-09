@@ -1,1 +1,1 @@
-select * from workspace.default.medewerker_data_raw
+select * from hive_metastore.default.medewerker_data_raw
