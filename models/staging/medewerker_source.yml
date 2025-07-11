@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: raw_data              # Naam van de bron in dbt (vrij te kiezen)
+    schema: default             # Werkelijk schema in de database (bijv. in Databricks)
+    
+    tables:
+      - name: medewerker_data_raw         # Naam van de echte tabel in Databricks
+        description: "Originele medewerkersgegevens uit het bronsysteem"  # Beschrijving van de tabel
+
+        loaded_at_field: bijgewerkt_op    # Kolom met tijdstip van laatste update
+        freshness:                        # Versheidscontrole
+          warn_after:                    # Waarschuwingstijd
+            count: 6                     # Waarschuw na 6 uur
+            period: hour
+          error_after:                   # Foutmeldingstijd
+            count: 12                    # Geef foutmelding na 12 uur
+            period: hour
